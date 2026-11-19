@@ -1,0 +1,181 @@
+/* RIDE de factura, con el mismo aspecto que el del sistema anterior: arriba
+   el logo con los datos de la empresa y la caja del comprobante; luego el
+   comprador, el detalle y, abajo, la informacion adicional con las formas de
+   pago a la izquierda y los totales a la derecha.
+
+   Los margenes de la hoja los pone el servicio al imprimir (no usar @page). */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  /* 1 mm de aire a cada lado: una linea justo en el borde del area de
+     impresion queda cortada a la mitad y en el visor desaparece. */
+  padding: 0 1mm;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 6.5pt;
+  line-height: 1.35;
+  color: #000;
+  /* Nada se sale de la hoja: un texto largo del ERP corta de linea. */
+  overflow-wrap: anywhere;
+}
+
+p { margin: 0 0 3pt; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* ------------------------------------------------------------------ cajas */
+
+.caja {
+  border: 1px solid #000;
+  padding: 6pt 6.5pt;
+}
+
+/* Solo las dos de arriba llevan las esquinas redondeadas. */
+.caja.redonda { border-radius: 9pt; }
+
+/* ---------------------------------------------------------------- cabecera */
+
+.cabecera {
+  display: flex;
+  gap: 2.5mm;
+  align-items: stretch;
+}
+
+.cabecera .columna-emisor { flex: 52 1 0; min-width: 0; }
+.cabecera .comprobante { flex: 47 1 0; min-width: 0; }
+
+/* Logo arriba y, debajo, la caja de la empresa pegada al fondo: asi las dos
+   cajas terminan a la misma altura. */
+.columna-emisor {
+  display: flex;
+  flex-direction: column;
+}
+
+.zona-logo {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2mm 0 4mm;
+}
+
+.logo {
+  display: block;
+  max-width: 60%;
+  max-height: 32mm;
+  object-fit: contain;
+}
+
+.emisor { padding-bottom: 16pt; }
+.emisor p { margin-bottom: 8pt; font-size: 6.1pt; }
+.emisor p:last-child { margin-bottom: 0; }
+
+.emisor h1 {
+  margin: 0 0 11pt;
+  font-size: 8pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.comprobante p { margin-bottom: 8pt; }
+
+.comprobante h2 {
+  margin: 3pt 0 15pt;
+  font-size: 11pt;
+  font-weight: normal;
+  letter-spacing: 3pt;
+}
+
+.comprobante .separado { margin-top: 25pt; }
+.comprobante p.pegado { margin-bottom: 1pt; }
+.comprobante p:last-child { margin-bottom: 4pt; }
+
+.clave {
+  font-size: 6.6pt;
+  word-break: break-all;
+}
+
+.centrado { text-align: center; }
+.clave.centrado { font-size: 7.2pt; }
+
+.barras {
+  display: block;
+  width: 71%;
+  height: 7.5mm;
+  margin: 1pt auto 2pt;
+}
+
+/* ---------------------------------------------------------------- comprador */
+
+.comprador { margin-top: 4mm; padding: 3pt 5pt; }
+.comprador td { padding: 4.5pt 2pt; vertical-align: top; }
+.comprador .col-izq { width: 51.5%; }
+
+/* ------------------------------------------------------------------ tablas */
+
+.tabla th,
+.tabla td {
+  border: 1px solid #000;
+  padding: 2.5pt 3pt;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tabla th { font-weight: normal; font-size: 7pt; line-height: 1.15; }
+.tabla td { font-size: 6.3pt; }
+.tabla .a-la-izquierda { text-align: left; }
+
+.detalle { margin-top: 3.5mm; }
+.detalle td { padding: 6pt 3pt; }
+.detalle .menudo { font-size: 6.5pt; }
+
+/* Una fila no se parte entre dos paginas y el encabezado se repite. */
+tr { page-break-inside: avoid; }
+thead { display: table-header-group; }
+
+/* --------------------------------------------------------------------- pie */
+
+.pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 4.5mm;
+}
+
+.pie .izquierda { flex: 0 0 38%; min-width: 0; }
+.pie .derecha { flex: 0 0 33%; min-width: 0; }
+
+.info-adicional {
+  padding: 6pt 8pt 17pt;
+  font-size: 6.3pt;
+  line-height: 1.3;
+}
+
+.titulo-caja {
+  text-align: center;
+  margin-bottom: 7pt;
+}
+
+.lista td { padding: 0.5pt 2pt; vertical-align: top; }
+.lista .nombre { width: 21%; overflow-wrap: normal; }
+
+.pagos {
+  margin-top: 3mm;
+  /* Un poco mas ancha que la caja de arriba, como en el RIDE de siempre. */
+  width: 105%;
+}
+.pagos td, .pagos th { font-size: 5.4pt; }
+
+/* Los nombres de los totales van a la derecha, pegados a su valor. */
+.totales td {
+  text-align: right;
+  padding: 2.2pt 5pt;
+}
+
+/* Solo el importe va en negrita; el nombre, en letra normal. */
+.totales tr.destacado td:last-child { font-weight: bold; }

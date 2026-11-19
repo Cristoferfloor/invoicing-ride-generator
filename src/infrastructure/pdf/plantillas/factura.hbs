@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{comprobante.titulo}} {{comprobante.numero}}</title>
+    <style>{{{estilos}}}</style>
+  </head>
+  <body>
+    <div class="cabecera">
+      <div class="columna-emisor">
+        <div class="zona-logo">{{#if logo}}<img class="logo" src="{{logo.fuente}}" alt="" />{{/if}}</div>
+        <section class="caja redonda emisor">
+          <h1>{{emisor.razonSocial}}</h1>
+          {{#if emisor.nombreComercial}}<p>{{emisor.nombreComercial}}</p>{{/if}}
+          <p>Dir. Matriz: {{emisor.dirMatriz}}</p>
+          <p>Dir. Sucursal: {{#if emisor.dirEstablecimiento}}{{emisor.dirEstablecimiento}}{{/if}}</p>
+          <p>OBLIGADO A LLEVAR CONTABILIDAD: {{emisor.obligadoContabilidad}}</p>
+          {{#if emisor.contribuyenteEspecial}}
+            <p>Contribuyente Especial Nro.: {{emisor.contribuyenteEspecial}}</p>
+          {{/if}}
+          {{#if emisor.agenteRetencion}}
+            <p>Agente de Retenci&oacute;n Resoluci&oacute;n No. {{emisor.agenteRetencion}}</p>
+          {{/if}}
+          {{#if emisor.regimenRimpe}}<p>{{emisor.regimenRimpe}}</p>{{/if}}
+        </section>
+      </div>
+
+      <section class="caja redonda comprobante">
+        <p>R.U.C.: {{emisor.ruc}}</p>
+        <h2>{{comprobante.titulo}}</h2>
+        <p>No. {{comprobante.numero}}</p>
+        <p>N&Uacute;MERO DE AUTORIZACI&Oacute;N:</p>
+        <p class="clave">{{comprobante.numeroAutorizacion}}</p>
+        <p class="separado">AMBIENTE: {{comprobante.ambiente}}</p>
+        <p>EMISI&Oacute;N: {{comprobante.tipoEmision}}</p>
+        <p class="pegado">CLAVE DE ACCESO:</p>
+        <img class="barras" src="{{codigoBarras}}" alt="" />
+        <p class="clave centrado">{{comprobante.claveAcceso}}</p>
+      </section>
+    </div>
+
+    <section class="caja comprador">
+      <table>
+        <tr>
+          <td class="col-izq">Raz&oacute;n Social / Nombres y Apellidos: {{comprador.razonSocial}}</td>
+          <td>RUC / CI: {{comprador.identificacion}}</td>
+        </tr>
+        <tr>
+          <td>Fecha Emisi&oacute;n: {{comprobante.fechaEmision}}</td>
+          <td>Gu&iacute;a Remisi&oacute;n: {{comprobante.guiaRemision}}</td>
+        </tr>
+        {{#if comprador.direccion}}
+          <tr>
+            <td colspan="2">Direcci&oacute;n: {{comprador.direccion}}</td>
+          </tr>
+        {{/if}}
+      </table>
+    </section>
+
+    <table class="tabla detalle">
+      <colgroup>
+        <col style="width: 8.4%" />
+        <col style="width: 7.9%" />
+        <col style="width: 7.2%" />
+        <col style="width: 14.4%" />
+        <col style="width: 10%" />
+        <col style="width: 10%" />
+        <col style="width: 10%" />
+        <col style="width: 11.7%" />
+        <col style="width: 9.7%" />
+        <col style="width: 10.7%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Cod.<br />Principal</th>
+          <th>Cod.<br />Auxiliar</th>
+          <th>Cant.</th>
+          <th>Descripci&oacute;n</th>
+          <th>Detalle<br />Adicional</th>
+          <th>Detalle<br />Adicional</th>
+          <th>Detalle<br />Adicional</th>
+          <th>Precio Unitario</th>
+          <th>Descuento</th>
+          <th>Precio Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each lineas}}
+          <tr>
+            <td>{{codigoPrincipal}}</td>
+            <td>{{codigoAuxiliar}}</td>
+            <td>{{cantidad}}</td>
+            <td>{{descripcion}}</td>
+            <td class="menudo">{{detalleAdicional1}}</td>
+            <td class="menudo">{{detalleAdicional2}}</td>
+            <td class="menudo">{{detalleAdicional3}}</td>
+            <td>{{precioUnitario}}</td>
+            <td>{{descuento}}</td>
+            <td>{{precioTotal}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="pie">
+      <div class="izquierda">
+        {{#if infoAdicional.length}}
+          <section class="caja info-adicional">
+            <p class="titulo-caja">Informaci&oacute;n Adicional:</p>
+            <table class="lista">
+              {{#each infoAdicional}}
+                <tr><td class="nombre">{{nombre}}:</td><td>{{valor}}</td></tr>
+              {{/each}}
+            </table>
+          </section>
+        {{/if}}
+
+        {{#if pagos.length}}
+          <table class="tabla pagos">
+            <colgroup>
+              <col style="width: 45%" />
+              <col style="width: 18%" />
+              <col style="width: 18%" />
+              <col style="width: 19%" />
+            </colgroup>
+            <thead>
+              <tr><th class="a-la-izquierda">Forma de Pago</th><th>Total</th><th>Plazo</th><th>Tiempo</th></tr>
+            </thead>
+            <tbody>
+              {{#each pagos}}
+                <tr>
+                  <td class="a-la-izquierda">{{formaPago}}</td>
+                  <td>{{total}}</td>
+                  <td>{{plazo}}</td>
+                  <td>{{tiempo}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{/if}}
+      </div>
+
+      <div class="derecha">
+        <table class="tabla totales">
+          <colgroup><col style="width: 60%" /><col style="width: 40%" /></colgroup>
+          {{#each totales}}
+            <tr class="{{#if destacado}}destacado{{/if}}">
+              <td>{{etiqueta}}</td>
+              <td>{{valor}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

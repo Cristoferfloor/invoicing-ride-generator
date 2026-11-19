@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>1</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>ROOTS Y ROUTES S.A.S</razonSocial>
+    <nombreComercial>ROOTS Y ROUTES S.A.S</nombreComercial>
+    <ruc>2390625475001</ruc>
+    <claveAcceso>1709202601239062547500110020010003472460034724610</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>002</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>000347246</secuencial>
+    <dirMatriz>Santo Domingo .Calle  VIA A ESMERALDAS Numero  S/N Interseccion  C. PORTON Kilometro  2 1/2</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>17/09/2026</fechaEmision>
+    <dirEstablecimiento>Santo Domingo .Calle  VIA A ESMERALDAS Numero  S/N Interseccion  C. PORTON Kilometro  2 1/2</dirEstablecimiento>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>07</tipoIdentificacionComprador>
+    <razonSocialComprador>Consumidor Final</razonSocialComprador>
+    <identificacionComprador>9999999999999</identificacionComprador>
+    <totalSinImpuestos>4.59</totalSinImpuestos>
+    <totalDescuento>0.00</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>0</codigoPorcentaje>
+        <baseImponible>3.90</baseImponible>
+        <valor>0.00</valor>
+      </totalImpuesto>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>4</codigoPorcentaje>
+        <baseImponible>0.69</baseImponible>
+        <valor>0.10</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0.00</propina>
+    <importeTotal>4.69</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>01</formaPago>
+        <total>4.69</total>
+        <plazo>1</plazo>
+        <unidadTiempo>DIAS</unidadTiempo>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>9126</codigoPrincipal>
+      <descripcion>TOALLA HIGIENICA NOSOTARS NATURAL BUENAS NOCHES X 10 U</descripcion>
+      <unidadMedida>UNIDAD</unidadMedida>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>3.9000</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>3.90</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0.00</tarifa>
+          <baseImponible>3.90</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>60012</codigoPrincipal>
+      <descripcion>HALLS EXTRA FUERTE 24.7G</descripcion>
+      <unidadMedida>UNIDAD</unidadMedida>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.6900</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>0.69</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>0.69</baseImponible>
+          <valor>0.10</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="Telefono">0980283975</campoAdicional>
+    <campoAdicional nombre="Direccion">SANTO DOMINGO</campoAdicional>
+    <campoAdicional nombre="Email">villafuertepedro94@gmail.com</campoAdicional>
+    <campoAdicional nombre="Observaciones">-</campoAdicional>
+    <campoAdicional nombre="RUC Proveedor">1790598616001</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="Signature"><!-- firma del certificado, recortada para la prueba --></ds:Signature></factura>
